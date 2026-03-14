@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/lib/articles";
+import { getAllArticles } from '@/lib/articles';
 
 const SITE_URL = process.env.RSS_URL;
 
@@ -26,12 +26,12 @@ export async function GET() {
     <item>
       <title><![CDATA[${article.metadata.title}]]></title>
       <link>${url}</link>
-      <description><![CDATA[${article.metadata.description ?? ""}]]></description>
+      <description><![CDATA[${article.metadata.description ?? ''}]]></description>
       <pubDate>${pubDate}</pubDate>
       <guid isPermaLink="true">${url}</guid>
     </item>`;
 		})
-		.join("");
+		.join('');
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
@@ -46,7 +46,7 @@ export async function GET() {
 
 	return new Response(xml, {
 		headers: {
-			"Content-Type": "application/xml",
+			'Content-Type': 'application/xml',
 		},
 	});
 }

@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import { FaLayerGroup, FaLink } from "react-icons/fa";
-import { Header } from "../components/header";
-import { Main } from "../components/main";
-import { TypographyH1 } from "../components/typography";
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaLayerGroup, FaLink } from 'react-icons/fa';
+import { Header } from '../components/header';
+import { Main } from '../components/main';
+import { TypographyH1 } from '../components/typography';
 
 export default function Home() {
 	return (
@@ -12,14 +12,14 @@ export default function Home() {
 				<div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4">
 					<div className="flex items-center gap-3">
 						<Image
-							src={process.env.GITHUB_AVATAR_URL || ""}
+							src={process.env.GITHUB_AVATAR_URL || ''}
 							alt=""
 							width={30}
 							height={30}
 							className="rounded-full"
 						/>
 						<Link href="/" className="text-sm text-center ">
-							stack learner{" "}
+							stack learner{' '}
 							<span className="block text-xs text-gray-500">
 								(by Guilherme Couto)
 							</span>
@@ -34,7 +34,7 @@ export default function Home() {
 							/articles
 						</Link>
 						<Link
-							href={process.env.GITHUB_URL || ""}
+							href={process.env.GITHUB_URL || ''}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="hover:text-gray-600 transition-colors"
@@ -42,7 +42,7 @@ export default function Home() {
 							/github
 						</Link>
 						<Link
-							href={process.env.LINKEDIN_URL || ""}
+							href={process.env.LINKEDIN_URL || ''}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="hover:text-gray-600 transition-colors"
@@ -61,7 +61,6 @@ export default function Home() {
 							strokeWidth={3}
 							className="text-amber-400"
 						/>
-
 					</div>
 
 					<span className="text-sm">Learning / Writing / Sharing</span>
@@ -69,22 +68,23 @@ export default function Home() {
 						STACK LEARNER
 					</TypographyH1>
 					<h2 className="font-mono text-sm uppercase">
-						<span className="text-amber-400">&gt;</span> building knowledge in public
+						<span className="text-amber-400">&gt;</span> building knowledge in
+						public
 					</h2>
 				</section>
 
 				<section className="max-w-100 mx-auto text-center">
 					<p>
-						Stack Learner is the personal blog/portfolio of{" "}
+						Stack Learner is the personal blog/portfolio of{' '}
 						<Link
-							href={process.env.LINKEDIN_URL || ""}
+							href={process.env.LINKEDIN_URL || ''}
 							target="_blank"
 							className="underline decoration-2 decoration-amber-400 decoration-wavy"
 						>
 							Guilherme Couto
 						</Link>
 						, where he explores and shares insights about the world of
-						Software/Product Engineering{" "}
+						Software/Product Engineering{' '}
 						<code className="font-mono text-amber-400">&&</code> some bits about
 						his Life.
 					</p>

@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Header } from "@/components/header";
-import { Main } from "@/components/main";
-import { TypographyH1 } from "@/components/typography";
-import { getAllArticles } from "@/lib/articles";
+import Link from 'next/link';
+import { Header } from '@/components/header';
+import { Main } from '@/components/main';
+import { TypographyH1 } from '@/components/typography';
+import { getAllArticles } from '@/lib/articles';
 
 export default async function Page() {
 	const articles = (await getAllArticles())
@@ -14,10 +14,10 @@ export default async function Page() {
 		);
 
 	const formatDate = (dateString: string) => {
-		const date = new Date(dateString).toLocaleDateString("en-US", {
-			day: "numeric",
-			month: "short",
-			year: "numeric",
+		const date = new Date(dateString).toLocaleDateString('en-US', {
+			day: 'numeric',
+			month: 'short',
+			year: 'numeric',
 		});
 
 		return date;

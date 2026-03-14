@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export function BackToHome() {
 	return (
