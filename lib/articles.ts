@@ -1,15 +1,15 @@
-import fs from "fs";
-import matter from "gray-matter";
-import { notFound } from "next/navigation";
-import path from "path";
-import { markdownToHtml } from "./markdown-to-html";
+import fs from 'fs';
+import matter from 'gray-matter';
+import { notFound } from 'next/navigation';
+import path from 'path';
+import { markdownToHtml } from './markdown-to-html';
 
-const articlesDirectory = path.join(process.cwd(), "/articles");
+const articlesDirectory = path.join(process.cwd(), '/articles');
 
 function getReadingTime(content: string): number {
 	const text = content
-		.replace(/```[\s\S]*?```/g, "")
-		.replace(/[#*`[\]()>_~]/g, "");
+		.replace(/```[\s\S]*?```/g, '')
+		.replace(/[#*`[\]()>_~]/g, '');
 	const words = text.trim().split(/\s+/).filter(Boolean).length;
 	return Math.ceil(words / 200);
 }
@@ -18,9 +18,9 @@ export async function getAllArticles() {
 	const files = fs.readdirSync(articlesDirectory);
 
 	return files.map((fileName) => {
-		const slug = fileName.replace(".md", "");
+		const slug = fileName.replace('.md', '');
 		const filePath = path.join(articlesDirectory, fileName);
-		const fileContent = fs.readFileSync(filePath, "utf8");
+		const fileContent = fs.readFileSync(filePath, 'utf8');
 
 		const { data, content } = matter(fileContent);
 
@@ -39,7 +39,7 @@ export async function getArticleBySlug(slug: string) {
 		notFound();
 	}
 
-	const fileContent = fs.readFileSync(filePath, "utf8");
+	const fileContent = fs.readFileSync(filePath, 'utf8');
 
 	const { data, content } = matter(fileContent);
 

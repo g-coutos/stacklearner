@@ -1,7 +1,7 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export function Footer() {
-	const GITHUB_REPO_URL = process.env.GITHUB_REPO_URL || "";
+	const GITHUB_REPO_URL = process.env.GITHUB_REPO_URL || '';
 
 	return (
 		<footer className="max-w-2xl w-full mx-auto">

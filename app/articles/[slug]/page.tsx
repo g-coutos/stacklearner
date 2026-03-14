@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { Header } from "@/components/header";
-import { Main } from "@/components/main";
-import { TypographyH1 } from "@/components/typography";
-import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import type { Metadata } from 'next';
+import { Header } from '@/components/header';
+import { Main } from '@/components/main';
+import { TypographyH1 } from '@/components/typography';
+import { getAllArticles, getArticleBySlug } from '@/lib/articles';
 
 export async function generateMetadata({
 	params,
@@ -13,7 +13,7 @@ export async function generateMetadata({
 	const article = await getArticleBySlug(slug).catch(() => null);
 
 	if (!article) {
-		return { title: "Article not found" };
+		return { title: 'Article not found' };
 	}
 
 	return {
@@ -35,10 +35,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	const article = await getArticleBySlug(slug);
 
 	const formatDate = (dateString: string) => {
-		const date = new Date(dateString).toLocaleDateString("en-US", {
-			day: "numeric",
-			month: "long",
-			year: "numeric",
+		const date = new Date(dateString).toLocaleDateString('en-US', {
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
 		});
 
 		return date;

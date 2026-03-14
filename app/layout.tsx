@@ -1,36 +1,36 @@
-import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
-import localFont from "next/font/local";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Instrument_Serif, Inter } from 'next/font/google';
+import localFont from 'next/font/local';
+import './globals.css';
 
-import { Analytics } from "@vercel/analytics/next";
-import { Footer } from "@/components/footer";
+import { Analytics } from '@vercel/analytics/next';
+import { Footer } from '@/components/footer';
 
 const inter = Inter({
-	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-	subsets: ["latin"],
+	weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+	subsets: ['latin'],
 	preload: true,
 });
 
 const instrumentSerif = Instrument_Serif({
-	weight: ["400"],
-	subsets: ["latin"],
-	variable: "--font-instrument-serif",
+	weight: ['400'],
+	subsets: ['latin'],
+	variable: '--font-instrument-serif',
 	preload: true,
 });
 
 const departureMono = localFont({
-	src: "../public/font/DepartureMono-Regular.woff2",
-	variable: "--font-departure",
+	src: '../public/font/DepartureMono-Regular.woff2',
+	variable: '--font-departure',
 });
 
 export const metadata: Metadata = {
-	title: "Stack Learner by Guilherme Couto",
+	title: 'Stack Learner by Guilherme Couto',
 	description:
-		"Stack Learner is the personal blog/portfolio of Guilherme Couto, where he explores and shares insights about the world of Software/Product Engineering && some bits about his Life.",
+		'Stack Learner is the personal blog/portfolio of Guilherme Couto, where he explores and shares insights about the world of Software/Product Engineering && some bits about his Life.',
 	alternates: {
 		types: {
-			"application/rss+xml": "/rss.xml",
+			'application/rss+xml': '/rss.xml',
 		},
 	},
 };
@@ -43,7 +43,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<head>
-				<script defer src="https://cloud.umami.is/script.js" data-website-id="5f2c1d66-3464-4653-8413-324cc1d061eb"></script>
+				<script
+					defer
+					src="https://cloud.umami.is/script.js"
+					data-website-id="5f2c1d66-3464-4653-8413-324cc1d061eb"
+				></script>
 			</head>
 			<body
 				className={`${inter.className} ${instrumentSerif.variable} ${departureMono.variable} antialiased`}
