@@ -3,6 +3,7 @@ import { Instrument_Serif, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
+import { Analytics } from "@vercel/analytics/next";
 import { Footer } from "@/components/footer";
 
 const inter = Inter({
@@ -46,6 +47,7 @@ export default function RootLayout({
 			>
 				{children}
 				<Footer />
+				<Analytics />
 			</body>
 		</html>
 	);

@@ -61,6 +61,7 @@ export default function Home() {
 							strokeWidth={3}
 							className="text-amber-400"
 						/>
+
 					</div>
 
 					<span className="text-sm">Learning / Writing / Sharing</span>

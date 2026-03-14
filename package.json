@@ -10,6 +10,7 @@
 		"format": "biome check --write ."
 	},
 	"dependencies": {
+		"@vercel/analytics": "^2.0.1",
 		"clsx": "^2.1.1",
 		"gray-matter": "^4.0.3",
 		"next": "16.1.6",
