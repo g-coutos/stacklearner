@@ -14,6 +14,32 @@ function getReadingTime(content: string): number {
 	return Math.ceil(words / 200);
 }
 
+function toSlug(tag: string): string {
+	return tag
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+}
+
+export async function getAllTags(): Promise<string[]> {
+	const files = fs.readdirSync(articlesDirectory);
+	const tags = new Set<string>();
+
+	for (const fileName of files) {
+		const filePath = path.join(articlesDirectory, fileName);
+		const fileContent = fs.readFileSync(filePath, 'utf8');
+		const { data } = matter(fileContent);
+
+		if (data.published && Array.isArray(data.tags)) {
+			for (const tag of data.tags) {
+				tags.add(toSlug(tag));
+			}
+		}
+	}
+
+	return Array.from(tags).sort();
+}
+
 export async function getAllArticles() {
 	const files = fs.readdirSync(articlesDirectory);
 
