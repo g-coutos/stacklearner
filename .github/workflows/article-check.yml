@@ -1,0 +1,21 @@
+name: Article Check
+on:
+  pull_request:
+    paths:
+      - 'articles/**.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Frontmatter
+        run: |
+          for file in $(git diff --name-only origin/main HEAD -- 'articles/*.md'); do
+            echo "Validating: $file"
+            # Checks if published, title and date exists
+            grep -q "^published:" $file || (echo "❌ 'published' is missing!" && exit 1)
+            grep -q "^title:" $file    || (echo "❌ 'title' is missing!" && exit 1)
+            grep -q "^date:" $file     || (echo "❌ 'date' is missing!" && exit 1)
+          done
+          echo "✅ Valid Frontmatter"
