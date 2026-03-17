@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Main } from '@/components/main';
 import { TypographyH1 } from '@/components/typography';
+import { TagFilter } from '@/components/tag-filter';
 import { getAllArticles, getArticlesByTag } from '@/lib/articles';
 
 export default async function Page({
@@ -38,11 +39,12 @@ export default async function Page({
 					related to Software/Product Engineering && Life.
 				</p>
 			</Header>
-			<Main>
+			<Main className="p-0">
+				<TagFilter activeTag={tag} />
 				{articles.length > 0 ? (
 					<ul>
-						{articles.map((article) => (
-							<li key={article.slug}>
+						{articles.map((article, index) => (
+							<li key={article.slug} className={`px-8 py-5 border-b border-gray-200${index === 0 ? ' border-t' : ''}${index === articles.length - 1 ? ' border-b-0!' : ''}`}>
 								<div className="flex gap-1 text-xs text-gray-400 font-medium">
 									<span>{formatDate(article.metadata.date)}</span>–
 									<span>{article.readingTime} min read</span>
