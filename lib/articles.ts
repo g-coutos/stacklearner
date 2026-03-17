@@ -1,7 +1,7 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
-import path from 'node:path';
 import { markdownToHtml } from './markdown-to-html';
 
 const articlesDirectory = path.join(process.cwd(), '/articles');

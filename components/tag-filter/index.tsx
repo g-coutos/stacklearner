@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { getAllTags } from '@/lib/articles';
 import { TagBadge } from '@/components/tag-badge';
+import { getAllTags } from '@/lib/articles';
 import { cn } from '@/lib/utils';
 
 interface TagFilterProps {
@@ -18,7 +18,7 @@ export async function TagFilter({ activeTag }: TagFilterProps) {
 					'px-2 py-0.5 rounded text-xs font-mono transition-colors duration-200',
 					!activeTag
 						? 'bg-(--fluorescent-yellow) text-foreground'
-						: 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+						: 'bg-gray-100 text-gray-500 hover:bg-gray-200',
 				)}
 			>
 				All

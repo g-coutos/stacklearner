@@ -6,10 +6,9 @@ export async function GET() {
 	const articles = await getAllArticles();
 
 	const sorted = articles.sort(
-			(a, b) =>
-				new Date(b.metadata.date).getTime() -
-				new Date(a.metadata.date).getTime(),
-		);
+		(a, b) =>
+			new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime(),
+	);
 
 	const lastBuildDate =
 		sorted.length > 0
