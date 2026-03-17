@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaLayerGroup, FaLink } from 'react-icons/fa';
+import { FaLink } from 'react-icons/fa';
 import { Header } from '../components/header';
 import { Main } from '../components/main';
 import { TypographyH1 } from '../components/typography';
+import logo from '../public/logo.svg';
 
 export default function Home() {
 	return (
@@ -56,11 +57,7 @@ export default function Home() {
 			<Main>
 				<section className="mb-8 flex flex-col items-center">
 					<div className="mb-8 flex h-12.5 w-12.5 items-center justify-center rounded-2xl text-fluorescent-yellow shadow-lg bg-foreground">
-						<FaLayerGroup
-							size={25}
-							strokeWidth={3}
-							className="text-amber-400"
-						/>
+						<Image src={logo} alt="Stack Learner Logo" width={40} height={40} />
 					</div>
 
 					<span className="text-sm">Learning / Writing / Sharing</span>
@@ -75,18 +72,9 @@ export default function Home() {
 
 				<section className="max-w-100 mx-auto text-center">
 					<p>
-						Stack Learner is the personal blog/portfolio of{' '}
-						<Link
-							href={process.env.LINKEDIN_URL || ''}
-							target="_blank"
-							className="underline decoration-2 decoration-amber-400 decoration-wavy"
-						>
-							Guilherme Couto
-						</Link>
-						, where he explores and shares insights about the world of
-						Software/Product Engineering{' '}
-						<code className="font-mono text-amber-400">&&</code> some bits about
-						his Life.
+						Stack Learner is the personal blog/portfolio of Guilherme Couto ,
+						where he explores and shares insights about the world of
+						Software/Product Engineering and some bits about his Life.
 					</p>
 
 					<nav className="mt-6 flex justify-center gap-4">
