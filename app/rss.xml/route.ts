@@ -5,20 +5,18 @@ const SITE_URL = process.env.RSS_URL;
 export async function GET() {
 	const articles = await getAllArticles();
 
-	const published = articles
-		.filter((a) => a.metadata.published)
-		.sort(
+	const sorted = articles.sort(
 			(a, b) =>
 				new Date(b.metadata.date).getTime() -
 				new Date(a.metadata.date).getTime(),
 		);
 
 	const lastBuildDate =
-		published.length > 0
-			? new Date(published[0].metadata.date).toUTCString()
+		sorted.length > 0
+			? new Date(sorted[0].metadata.date).toUTCString()
 			: new Date().toUTCString();
 
-	const items = published
+	const items = sorted
 		.map((article) => {
 			const url = `${SITE_URL}/articles/${article.slug}`;
 			const pubDate = new Date(article.metadata.date).toUTCString();

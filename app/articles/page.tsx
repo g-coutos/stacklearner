@@ -2,11 +2,15 @@ import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Main } from '@/components/main';
 import { TypographyH1 } from '@/components/typography';
-import { getAllArticles } from '@/lib/articles';
+import { getAllArticles, getArticlesByTag } from '@/lib/articles';
 
-export default async function Page() {
-	const articles = (await getAllArticles())
-		.filter((post) => post.metadata.published)
+export default async function Page({
+	searchParams,
+}: {
+	searchParams: Promise<{ tag?: string }>;
+}) {
+	const { tag } = await searchParams;
+	const articles = (tag ? await getArticlesByTag(tag) : await getAllArticles())
 		.sort(
 			(a, b) =>
 				new Date(b.metadata.date).getTime() -

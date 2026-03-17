@@ -6,9 +6,7 @@ const SITE_URL = process.env.RSS_URL ?? '';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const articles = await getAllArticles();
 
-	const published = articles.filter((a) => a.metadata.published);
-
-	const articleEntries: MetadataRoute.Sitemap = published.map((article) => ({
+	const articleEntries: MetadataRoute.Sitemap = articles.map((article) => ({
 		url: `${SITE_URL}/articles/${article.slug}`,
 		lastModified: new Date(article.metadata.date),
 		changeFrequency: 'monthly',
