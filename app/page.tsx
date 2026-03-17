@@ -80,7 +80,7 @@ export default function Home() {
 						Stack Learner is the personal blog/portfolio of{' '} Guilherme Couto
 						, where he explores and shares insights about the world of
 						Software/Product Engineering{' '}
-						<code className="font-mono text-amber-400">&&</code> some bits about
+						and some bits about
 						his Life.
 					</p>
 
