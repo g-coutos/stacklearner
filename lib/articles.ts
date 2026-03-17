@@ -1,7 +1,7 @@
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
-import path from 'path';
 import { markdownToHtml } from './markdown-to-html';
 
 const articlesDirectory = path.join(process.cwd(), '/articles');
@@ -30,7 +30,7 @@ export async function getAllTags(): Promise<string[]> {
 		const fileContent = fs.readFileSync(filePath, 'utf8');
 		const { data } = matter(fileContent);
 
-		if (data.published && Array.isArray(data.tags)) {
+		if (Array.isArray(data.tags)) {
 			for (const tag of data.tags) {
 				tags.add(toSlug(tag));
 			}
@@ -43,19 +43,30 @@ export async function getAllTags(): Promise<string[]> {
 export async function getAllArticles() {
 	const files = fs.readdirSync(articlesDirectory);
 
-	return files.map((fileName) => {
-		const slug = fileName.replace('.md', '');
-		const filePath = path.join(articlesDirectory, fileName);
-		const fileContent = fs.readFileSync(filePath, 'utf8');
+	return files
+		.map((fileName) => {
+			const slug = fileName.replace('.md', '');
+			const filePath = path.join(articlesDirectory, fileName);
+			const fileContent = fs.readFileSync(filePath, 'utf8');
 
-		const { data, content } = matter(fileContent);
+			const { data, content } = matter(fileContent);
 
-		return {
-			slug,
-			metadata: data,
-			readingTime: getReadingTime(content),
-		};
-	});
+			return {
+				slug,
+				metadata: data,
+				readingTime: getReadingTime(content),
+			};
+		})
+		.filter((article) => article.metadata.published);
+}
+
+export async function getArticlesByTag(tagSlug: string) {
+	const articles = await getAllArticles();
+	return articles.filter(
+		(article) =>
+			Array.isArray(article.metadata.tags) &&
+			article.metadata.tags.some((tag: string) => toSlug(tag) === tagSlug),
+	);
 }
 
 export async function getArticleBySlug(slug: string) {
