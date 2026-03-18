@@ -33,15 +33,26 @@ published: true
 
 `/lib/articles.ts` reads and parses these files using `gray-matter`. Only articles with `published: true` are shown. `/lib/markdown-to-html.ts` converts content to HTML via a remark/rehype pipeline with syntax highlighting via `rehype-prism-plus`.
 
+**Key functions in `/lib/articles.ts`:**
+- `getAllArticles()` — returns all published articles with slug, metadata, and reading time.
+- `getArticleBySlug(slug)` — returns a single article with parsed HTML content; calls `notFound()` if missing.
+- `getAllTags()` — collects all unique tags across published articles, slugified and sorted.
+- `getArticlesByTag(tagSlug)` — filters articles by a tag slug.
+- `getReadingTime(content)` — estimates read time at 200 wpm, stripping code blocks and Markdown syntax before counting.
+- `toSlug(tag)` — normalizes tag strings to lowercase hyphenated slugs (used for URL-safe tag filtering).
+
 ### Routing
 
 - `/` — Home page with profile and navigation
-- `/articles` — Lists all published articles, sorted newest first
+- `/articles` — Lists all published articles, sorted newest first; supports `?tag=<slug>` query param for tag filtering
 - `/articles/[slug]` — Dynamic article page, statically generated via `generateStaticParams()`
 
 ### Components
 
 `/components/` contains layout primitives: `Header` (with optional back button), `Main`, `Footer`, `BackToHome`, and `Typography` wrappers. These are thin layout components — keep them that way.
+
+- `TagBadge` — renders a single tag as a link to `/articles?tag=<slug>`, with an `active` prop to highlight the current filter.
+- `TagFilter` — async server component that fetches all tags via `getAllTags()` and renders an "All" link plus a `TagBadge` per tag. Used at the top of `/articles`.
 
 ### Styling
 
