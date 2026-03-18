@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaLink } from 'react-icons/fa';
 import { Header } from '../components/header';
 import { Main } from '../components/main';
 import { TypographyH1 } from '../components/typography';
@@ -60,31 +59,30 @@ export default function Home() {
 						<Image src={logo} alt="Stack Learner Logo" width={40} height={40} />
 					</div>
 
-					<span className="text-sm">Learning / Writing / Sharing</span>
+					<span className="text-sm">SWE / Product Thinking / Writing about decisions that ship better software</span>
 					<TypographyH1 className="text-5xl md:text-6xl text-center font-bold">
 						STACK LEARNER
 					</TypographyH1>
 					<h2 className="font-mono text-sm uppercase">
-						<span className="text-amber-400">&gt;</span> building knowledge in
+						<span className="text-amber-400">&gt;</span> building products in
 						public
 					</h2>
 				</section>
 
-				<section className="max-w-100 mx-auto text-center">
+				<section className="max-w-110 mx-auto text-center">
 					<p>
-						Stack Learner is the personal blog/portfolio of Guilherme Couto ,
-						where he explores and shares insights about the world of
-						Software/Product Engineering and some bits about his Life.
+						I'm Guilherme Couto — Software Engineer with 5+ years building
+						products that users actually want to use.
 					</p>
 
-					<nav className="mt-6 flex justify-center gap-4">
-						<Link
-							href="/articles"
-							className="flex items-center gap-1 w-fit p-1 text-xs border border-gray-200 rounded-md"
-						>
-							<FaLink /> articles
-						</Link>
-					</nav>
+					<Link
+						href={process.env.LINKEDIN_URL || ''}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-block mt-5 px-4 py-3 border border-sky-500 rounded-md text-sm"
+					>
+						Let's connect!
+					</Link>
 				</section>
 			</Main>
 		</>

@@ -35,8 +35,7 @@ export default async function Page({
 					Articles
 				</TypographyH1>
 				<p className="text-sm text-gray-500">
-					A collection of articles written by Guilherme Couto on various topics
-					related to Software/Product Engineering && Life.
+					Thoughts on SWE, product thinking, and the occasional life detour.
 				</p>
 			</Header>
 			<Main className="p-0">
