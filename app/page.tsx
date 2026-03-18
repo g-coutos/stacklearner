@@ -59,7 +59,10 @@ export default function Home() {
 						<Image src={logo} alt="Stack Learner Logo" width={40} height={40} />
 					</div>
 
-					<span className="text-sm">SWE / Product Thinking / Writing about decisions that ship better software</span>
+					<span className="text-sm">
+						SWE / Product Thinking / Writing about decisions that ship better
+						software
+					</span>
 					<TypographyH1 className="text-5xl md:text-6xl text-center font-bold">
 						STACK LEARNER
 					</TypographyH1>
