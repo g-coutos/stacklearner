@@ -1,28 +1,28 @@
 ---
-title: "Delimitando o Escopo para Vencer a Procrastinação"
-description: "Como eu delimitei o escopo do meu projeto pessoal para superar a procrastinação e entregar um produto de valor."
+title: "Delimitando o Escopo pra Vencer a Procrastinação"
+description: "Como eu delimitei o escopo do meu projeto pessoal pra superar a procrastinação e entregar um produto de valor."
 date: "2026-05-26"
 tags: ["product engineering"]
 published: true
 ---
 
 ## Procrastinação
-Desde que comecei a estudar sobre desenvolvimento de software, tive vontade de ter um blog pessoal pra poder compartilhar meus aprendizados. Depois de algum tempo atuando na área, vi que tinha o conhecimento para criá-lo do zero e demonstrar minhas habilidades técnicas. 
+Desde que comecei a estudar sobre desenvolvimento de software, tive vontade de ter um blog pessoal pra poder compartilhar meus aprendizados. Depois de algum tempo atuando na área, vi que tinha o conhecimento pra criá-lo do zero e demonstrar minhas habilidades técnicas. 
 
 O início de um projeto sempre é uma alegria: escolhi a stack, modelei as tabelas do banco, decidi onde hospedar os serviços... tudo parecia perfeito. O problema é que a complexidade começou a crescer e meu tempo e vontade de continuar atuando em um *side project* que deveria ser simples e rápido logo acabaram. 
 
 Ou seja, procrastinei. Foi então que senti a dor de ter um produto pela metade que não me gerava valor nenhum.
 
 ## Delimitando o Escopo
-Tive que dar um passo para trás e entender qual produto eu realmente precisava. Foi assim que delimitei o escopo:
+Tive que dar um passo pra trás e entender qual produto eu realmente precisava. Foi assim que delimitei o escopo:
 - De um autor;
 - Que tivesse boas métricas de performance e SEO;
 - Que me permitisse escrever em Markdown.
 
-Esse produto já atenderia à minha necessidade inicial: ter um blog pessoal para compartilhar meus conhecimentos. Essa delimitação me tirou do ciclo de *overengineering* que tinha entrado. 
+Esse produto já atenderia à minha necessidade inicial: ter um blog pessoal pra compartilhar meus conhecimentos. Essa delimitação me tirou do ciclo de *overengineering* que tinha entrado. 
 
 ## Decisões Técnicas
-O bom de se ter um escopo definido é que as decisões técnicas são tomadas com mais facilidade. Aqui compartilho as minhas para esse produto:
+O bom de se ter um escopo definido é que as decisões técnicas são tomadas com mais facilidade. Aqui compartilho as minhas pra esse produto:
 
 O blog tem só um autor (eu). Só eu posso contribuir com o repo, os artigos não contêm informações sensíveis, e a frequência de postagens será baixa o suficiente pra não me preocupar com infraestrutura agora. 
 
@@ -43,11 +43,11 @@ Confesso que já fui cético em relação a Coding Agents, mas decidi seguir um 
 Quando utilizei técnicas de *Prompt Engineering* com o escopo bem definido do projeto, pude acelerar o desenvolvimento e, além disso, adicionar features que não estavam no escopo inicial, mas que fizeram muito sentido, como a filtragem dos artigos por tags de assunto. 
 
 ## Conclusão
-Bom, esse projeto me ajudou a ver a essência do porquê faço o que faço: o produto. Sem produto, não há valor. O software é feito para ser utilizado. Se não for, ele serve pra quê? 
+Bom, esse projeto me ajudou a ver a essência do porquê faço o que faço: o produto. Sem produto, não há valor. O software é feito pra ser utilizado. Se não for, ele serve pra quê? 
 
 Na era da inteligência artificial, não acredito que seremos substituídos. Decisões técnicas e de produto ainda precisam ser tomadas. 
 
-Creio que somos convidados a mudar um pouco o foco. Do purismo do código para o produto. Para o usuário. Para a acessibilidade. Esse é o caminho que quero seguir.
+Creio que somos convidados a mudar um pouco o foco. Do purismo do código pro produto. Pro usuário. Pra acessibilidade. Esse é o caminho que quero seguir.
 
 --- 
 
