@@ -1,7 +1,7 @@
 ---
 title: "Delimiting Scope to Overcome Procrastination"
 description: "How I scoped down my personal project to overcome procrastination and ship something valuable."
-date: "2026-01-27"
+date: "2026-05-26"
 tags: ["product engineering"]
 published: true
 ---

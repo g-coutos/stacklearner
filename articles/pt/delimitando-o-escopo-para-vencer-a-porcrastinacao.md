@@ -1,7 +1,7 @@
 ---
 title: "Delimitando o Escopo para Vencer a Procrastinação"
 description: "Como eu delimitei o escopo do meu projeto pessoal para superar a procrastinação e entregar um produto de valor."
-date: "2026-01-27"
+date: "2026-05-26"
 tags: ["product engineering"]
 published: true
 ---
