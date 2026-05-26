@@ -3,14 +3,17 @@ import { Header } from '@/components/header';
 import { Main } from '@/components/main';
 import { TypographyH1 } from '@/components/typography';
 import { getAllArticles, getArticleBySlug } from '@/lib/articles';
+import { getDictionary, type Locale, locales } from '@/lib/i18n';
 
 export async function generateMetadata({
 	params,
 }: {
-	params: { slug: string };
+	params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-	const { slug } = await params;
-	const article = await getArticleBySlug(slug).catch(() => null);
+	const { locale, slug } = await params;
+	const article = await getArticleBySlug(slug, locale as Locale).catch(
+		() => null,
+	);
 
 	if (!article) {
 		return { title: 'Article not found' };
@@ -23,35 +26,46 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-	const articles = await getAllArticles();
+	const params = [];
 
-	return articles.map((article) => ({
-		slug: article.slug,
-	}));
+	for (const locale of locales) {
+		const articles = await getAllArticles(locale);
+		for (const article of articles) {
+			params.push({ locale, slug: article.slug });
+		}
+	}
+
+	return params;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-	const { slug } = await params;
-	const article = await getArticleBySlug(slug);
+export default async function Page({
+	params,
+}: {
+	params: Promise<{ locale: string; slug: string }>;
+}) {
+	const { locale, slug } = await params;
+	const article = await getArticleBySlug(slug, locale as Locale);
+	const t = await getDictionary(locale as Locale);
 
 	const formatDate = (dateString: string) => {
-		const date = new Date(dateString).toLocaleDateString('en-US', {
-			day: 'numeric',
-			month: 'long',
-			year: 'numeric',
-		});
-
-		return date;
+		return new Date(dateString).toLocaleDateString(
+			locale === 'pt' ? 'pt-BR' : 'en-US',
+			{
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric',
+			},
+		);
 	};
 
 	return (
 		<>
-			<Header>
+			<Header backToHomeLabel={t.nav.backToHome} locale={locale}>
 				<span className="w-fit block mx-auto mb-1 text-sm font-medium text-gray-500">
 					{formatDate(article.metadata.date)}
 				</span>
 				<span className="w-fit block mx-auto mb-3 text-xs text-gray-400">
-					{article.readingTime} min read
+					{article.readingTime} {t.articles.minRead}
 				</span>
 				<TypographyH1 className="max-w-125 mx-auto text-4xl md:text-6xl text-center">
 					{article.metadata.title}

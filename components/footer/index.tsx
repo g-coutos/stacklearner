@@ -1,6 +1,13 @@
 import Link from 'next/link';
+import type { Locale } from '@/lib/i18n';
 
-export function Footer() {
+interface FooterProps {
+	locale: Locale;
+	codeLabel: string;
+	rssFeedLabel: string;
+}
+
+export function Footer({ locale, codeLabel, rssFeedLabel }: FooterProps) {
 	const GITHUB_REPO_URL = process.env.GITHUB_REPO_URL || '';
 
 	return (
@@ -14,15 +21,15 @@ export function Footer() {
 					rel="noopener noreferrer"
 					className="block text-gray-500 hover:text-gray-700 transition-colors duration-200"
 				>
-					Code
+					{codeLabel}
 				</Link>
 				<Link
-					href="/rss.xml"
+					href={`/${locale}/rss.xml`}
 					target="_blank"
 					rel="noopener noreferrer"
 					className="block text-gray-500 hover:text-gray-700 transition-colors duration-200"
 				>
-					RSS Feed
+					{rssFeedLabel}
 				</Link>
 			</div>
 		</footer>

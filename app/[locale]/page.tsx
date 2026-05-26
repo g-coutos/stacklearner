@@ -1,11 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Header } from '../components/header';
-import { Main } from '../components/main';
-import { TypographyH1 } from '../components/typography';
-import logo from '../public/logo.svg';
+import { Header } from '@/components/header';
+import { LocaleToggle } from '@/components/locale-toggle';
+import { Main } from '@/components/main';
+import { TypographyH1 } from '@/components/typography';
+import { getDictionary, type Locale } from '@/lib/i18n';
+import logo from '../../public/logo.svg';
 
-export default function Home() {
+export default async function Home({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
+	const t = await getDictionary(locale as Locale);
+
 	return (
 		<>
 			<Header isHomePage>
@@ -18,7 +27,7 @@ export default function Home() {
 							height={30}
 							className="rounded-full"
 						/>
-						<Link href="/" className="text-sm text-center ">
+						<Link href={`/${locale}`} className="text-sm text-center ">
 							stack learner{' '}
 							<span className="block text-xs text-gray-500">
 								(by Guilherme Couto)
@@ -28,7 +37,7 @@ export default function Home() {
 
 					<nav className="flex items-center gap-3 md:ml-auto text-sm text-gray-500">
 						<Link
-							href="/articles"
+							href={`/${locale}/articles`}
 							className="hover:text-gray-600 transition-colors"
 						>
 							/articles
@@ -50,6 +59,8 @@ export default function Home() {
 							/linkedin
 						</Link>
 					</nav>
+
+					<LocaleToggle locale={locale as Locale} />
 				</div>
 			</Header>
 
@@ -59,10 +70,7 @@ export default function Home() {
 						<Image src={logo} alt="Stack Learner Logo" width={40} height={40} />
 					</div>
 
-					<span className="text-sm">
-						SWE / Product Thinking / Writing about decisions that ship better
-						software
-					</span>
+					<span className="text-sm">{t.home.tagline}</span>
 					<TypographyH1 className="text-5xl md:text-6xl text-center font-bold">
 						STACK LEARNER
 					</TypographyH1>
@@ -73,10 +81,7 @@ export default function Home() {
 				</section>
 
 				<section className="max-w-110 mx-auto text-center">
-					<p>
-						I'm Guilherme Couto — Software Engineer with 5+ years building
-						products that users actually want to use.
-					</p>
+					<p>{t.home.bio}</p>
 
 					<Link
 						href={process.env.LINKEDIN_URL || ''}
@@ -84,7 +89,7 @@ export default function Home() {
 						rel="noopener noreferrer"
 						className="inline-block mt-5 px-4 py-3 border border-sky-500 rounded-md text-sm"
 					>
-						Let's connect!
+						{t.home.cta}
 					</Link>
 				</section>
 			</Main>

@@ -4,42 +4,53 @@ import { Main } from '@/components/main';
 import { TagFilter } from '@/components/tag-filter';
 import { TypographyH1 } from '@/components/typography';
 import { getAllArticles, getArticlesByTag } from '@/lib/articles';
+import { getDictionary, type Locale } from '@/lib/i18n';
 
 export default async function Page({
+	params,
 	searchParams,
 }: {
+	params: Promise<{ locale: string }>;
 	searchParams: Promise<{ tag?: string }>;
 }) {
+	const { locale } = await params;
 	const { tag } = await searchParams;
+	const t = await getDictionary(locale as Locale);
+
 	const articles = (
-		tag ? await getArticlesByTag(tag) : await getAllArticles()
+		tag
+			? await getArticlesByTag(tag, locale as Locale)
+			: await getAllArticles(locale as Locale)
 	).sort(
 		(a, b) =>
 			new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime(),
 	);
 
 	const formatDate = (dateString: string) => {
-		const date = new Date(dateString).toLocaleDateString('en-US', {
-			day: 'numeric',
-			month: 'short',
-			year: 'numeric',
-		});
-
-		return date;
+		return new Date(dateString).toLocaleDateString(
+			locale === 'pt' ? 'pt-BR' : 'en-US',
+			{
+				day: 'numeric',
+				month: 'short',
+				year: 'numeric',
+			},
+		);
 	};
 
 	return (
 		<>
-			<Header>
+			<Header backToHomeLabel={t.nav.backToHome} locale={locale}>
 				<TypographyH1 className="text-4xl md:text-6xl font-bold">
-					Articles
+					{t.articles.heading}
 				</TypographyH1>
-				<p className="text-sm text-gray-500">
-					Thoughts on SWE, product thinking, and the occasional life detour.
-				</p>
+				<p className="text-sm text-gray-500">{t.articles.description}</p>
 			</Header>
 			<Main className="p-0">
-				<TagFilter activeTag={tag} />
+				<TagFilter
+					activeTag={tag}
+					locale={locale as Locale}
+					allLabel={t.nav.all}
+				/>
 				{articles.length > 0 ? (
 					<ul>
 						{articles.map((article, index) => (
@@ -49,11 +60,13 @@ export default async function Page({
 							>
 								<div className="flex gap-1 text-xs text-gray-400 font-medium">
 									<span>{formatDate(article.metadata.date)}</span>–
-									<span>{article.readingTime} min read</span>
+									<span>
+										{article.readingTime} {t.articles.minRead}
+									</span>
 								</div>
 
 								<Link
-									href={`/articles/${article.slug}`}
+									href={`/${locale}/articles/${article.slug}`}
 									className="text-md underline"
 								>
 									{article.metadata.title}
@@ -63,7 +76,7 @@ export default async function Page({
 					</ul>
 				) : (
 					<p className="font-mono text-sm text-center text-gray-400">
-						[ 404 NO ARTICLES FOUND ]
+						{t.articles.noArticles}
 					</p>
 				)}
 			</Main>

@@ -27,12 +27,26 @@ body {
 	font-weight: 400;
 }
 
+.prose h1:first-of-type,
+.prose h2:first-of-type,
+.prose h3:first-of-type,
+.prose h4:first-of-type,
+.prose h5:first-of-type,
+.prose h6:first-of-type {
+	margin-top: 0;
+}
+
 .prose h2 {
 	margin-top: 2rem;
 	font-size: 1.5rem;
 }
 
 .prose p {
+	font-size: 0.875rem;
+}
+
+.prose ul,
+ol {
 	font-size: 0.875rem;
 }
 

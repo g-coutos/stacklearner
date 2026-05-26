@@ -4,12 +4,13 @@ import { cn } from '@/lib/utils';
 interface TagBadgeProps {
 	tag: string;
 	active?: boolean;
+	locale: string;
 }
 
-export function TagBadge({ tag, active = false }: TagBadgeProps) {
+export function TagBadge({ tag, active = false, locale }: TagBadgeProps) {
 	return (
 		<Link
-			href={`/articles?tag=${tag}`}
+			href={`/${locale}/articles?tag=${tag}`}
 			className={cn(
 				'px-2 py-0.5 border rounded text-xs transition-colors duration-200',
 				active
