@@ -2,9 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
+import type { Locale } from './i18n/config';
 import { markdownToHtml } from './markdown-to-html';
 
-const articlesDirectory = path.join(process.cwd(), '/articles');
+function getArticlesDirectory(locale: Locale) {
+	return path.join(process.cwd(), 'articles', locale);
+}
 
 function getReadingTime(content: string): number {
 	const text = content
@@ -21,12 +24,14 @@ function toSlug(tag: string): string {
 		.replace(/^-|-$/g, '');
 }
 
-export async function getAllTags(): Promise<string[]> {
-	const files = fs.readdirSync(articlesDirectory);
+export async function getAllTags(locale: Locale): Promise<string[]> {
+	const dir = getArticlesDirectory(locale);
+	if (!fs.existsSync(dir)) return [];
+	const files = fs.readdirSync(dir);
 	const tags = new Set<string>();
 
 	for (const fileName of files) {
-		const filePath = path.join(articlesDirectory, fileName);
+		const filePath = path.join(dir, fileName);
 		const fileContent = fs.readFileSync(filePath, 'utf8');
 		const { data } = matter(fileContent);
 
@@ -40,13 +45,15 @@ export async function getAllTags(): Promise<string[]> {
 	return Array.from(tags).sort();
 }
 
-export async function getAllArticles() {
-	const files = fs.readdirSync(articlesDirectory);
+export async function getAllArticles(locale: Locale) {
+	const dir = getArticlesDirectory(locale);
+	if (!fs.existsSync(dir)) return [];
+	const files = fs.readdirSync(dir);
 
 	return files
 		.map((fileName) => {
 			const slug = fileName.replace('.md', '');
-			const filePath = path.join(articlesDirectory, fileName);
+			const filePath = path.join(dir, fileName);
 			const fileContent = fs.readFileSync(filePath, 'utf8');
 
 			const { data, content } = matter(fileContent);
@@ -60,8 +67,8 @@ export async function getAllArticles() {
 		.filter((article) => article.metadata.published);
 }
 
-export async function getArticlesByTag(tagSlug: string) {
-	const articles = await getAllArticles();
+export async function getArticlesByTag(tagSlug: string, locale: Locale) {
+	const articles = await getAllArticles(locale);
 	return articles.filter(
 		(article) =>
 			Array.isArray(article.metadata.tags) &&
@@ -69,8 +76,9 @@ export async function getArticlesByTag(tagSlug: string) {
 	);
 }
 
-export async function getArticleBySlug(slug: string) {
-	const filePath = path.join(articlesDirectory, `${slug}.md`);
+export async function getArticleBySlug(slug: string, locale: Locale) {
+	const dir = getArticlesDirectory(locale);
+	const filePath = path.join(dir, `${slug}.md`);
 
 	if (!fs.existsSync(filePath)) {
 		notFound();
