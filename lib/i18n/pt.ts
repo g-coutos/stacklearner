@@ -1,14 +1,14 @@
 const pt = {
 	home: {
 		tagline:
-			'SWE / Product Thinking / Escrevendo sobre decisões que entregam software melhor',
-		bio: 'Sou Guilherme Couto — Engenheiro de Software com 5+ anos construindo produtos que usuários realmente querem usar.',
+			'SWE / Product Thinking / Writing about decisions that ship better software',
+		bio: 'Sou o Guilherme Couto — Engenheiro de Software com 5+ anos construindo produtos que usuários querem usar.',
 		cta: 'Vamos nos conectar!',
 	},
 	articles: {
 		heading: 'Artigos',
 		description:
-			'Pensamentos sobre SWE, product thinking, e o ocasional desvio de rota.',
+			'Pensamentos sobre SWE, product thinking, os desvios ocasionais da vida.',
 		noArticles: '[ 404 SEM ARTIGOS ]',
 		minRead: 'min de leitura',
 	},
