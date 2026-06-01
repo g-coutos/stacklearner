@@ -67,10 +67,16 @@ export default async function Home({
 			<Main>
 				<section className="mb-8 flex flex-col items-center">
 					<div className="mb-8 flex h-12.5 w-12.5 items-center justify-center rounded-2xl text-fluorescent-yellow shadow-lg bg-foreground">
-						<Image src={logo} alt="Stack Learner Logo" width={40} height={40} />
+						<Image
+							src={logo}
+							alt="Stack Learner Logo"
+							width={40}
+							height={40}
+							draggable="false"
+						/>
 					</div>
 
-					<span className="text-sm">{t.home.tagline}</span>
+					<span className="text-sm text-center">{t.home.tagline}</span>
 					<TypographyH1 className="text-5xl md:text-6xl text-center font-bold">
 						STACK LEARNER
 					</TypographyH1>
