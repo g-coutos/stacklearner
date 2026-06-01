@@ -72,7 +72,7 @@ export default async function Home({
 							alt="Stack Learner Logo"
 							width={40}
 							height={40}
-							draggable={false}
+							draggable="false"
 						/>
 					</div>
 
